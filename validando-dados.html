@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+		integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+	<title>Aprendendo JavaScript</title>
+	<style type="text/css" 0>
+		body {
+			font-family: 'Arial', sans-serif;
+		}
+	</style>
+</head>
+
+<body class="bg-light">
+
+	<div class="container bg-white py-3 px-5">
+
+		<h1>Aprendendo JavaScript</h1>
+
+		<p>JavaScript não é JAVA.</p>
+
+		<p>JavaScript do navegador é diferente do JavaScript do NodeJS</p>
+
+		<form action="#">
+			<div class="row">
+
+				<div class="col-md-12">
+
+					<h3>Regras</h3>
+
+					<ul>
+						<li>Não pode ser vazio;</li>
+						<li>E-mail não pode ser vazio.</li>
+						<li>Nome tem que ter 3 caracteres ou mais;</li>
+						<li>Tem que ter um "@" e um "." e ter 5 ou mais caracteres.</li>
+					</ul>
+
+				</div>
+
+				<div class="col-md-6">
+
+					<label for="nome" class="font-weight-bold form-label">Nome</label>
+
+					<input id="nome" type="text" class="form-control">
+					<span class="small"></span>
+
+				</div>
+
+				<div class="col-md-6">
+
+
+					<label for="email" class="font-weight-bold form-label">E-mail</label>
+					<input id="email" type="email" class="form-control">
+					<span class="small"></span>
+
+				</div>
+
+			</div>
+		</form>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous">
+	</script>
+
+	<script type="text/javascript">
+		const inputName = document.querySelector("#nome")
+		const spanName = document.querySelector("#nome + span")
+
+		const inputEmail = document.querySelector("#email")
+		const spanEmail = document.querySelector("#email + span")
+
+		inputName.addEventListener("blur", () => {
+
+				if (inputName.value == "") {
+					inputName.classList.add('is-invalid')
+					spanName.innerHTML = '<strong>O campo NOME não pode ser vazio</strong>'
+				} else if (inputName.value.length < 3) {
+					inputName.classList.add('is-invalid')
+					spanName.innerHTML = '<strong>O campoNOME tem que ter no minimo 3 caracteres</strong>'
+				} else {
+					spanName.innerHTML = ''
+					inputName.classList.remove('is-invalid')
+				}
+			}
+
+		)
+		inputEmail.addEventListener("blur", () => {
+			if (inputEmail.value == "") {
+				inputEmail.classList.add('is-invalid')
+				spanEmail.innerHTML = '<strong>O campo EMAIL não pode ser vazio</strong>'
+			} else if (inputEmail.value.length < 5) {
+				inputEmail.classList.add('is-invalid')
+				spanEmail.innerHTML = '<strong>O campo EMAIL tem que ter no minimo 5 caracteres</strong>'
+			} else if (!inputEmail.value.includes("@") && !inputEmail.value.includes(".com")) {
+				inputEmail.classList.add('is-invalid')
+				spanEmail.innerHTML = '<strong>Esse não é um EMAIL válido</strong>'
+			} else {
+				spanEmail.innerHTML = ''
+				inputEmail.classList.remove('is-invalid')
+			}
+
+		})
+	</script>
+
+</body>
+
+</html>
