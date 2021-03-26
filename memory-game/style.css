@@ -1,0 +1,279 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+body {
+  height: 100vh;
+  /* background: black; */
+  background-image: url(./assets/among-us-space.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+main {
+  
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+header {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  color: white;
+
+}
+header h1{
+  font-size: 70px;
+}
+header button {
+  margin-top: 20px;
+  width: 250px;
+  height: 45px;
+  text-align: center;
+  color: white;
+  background-color:black;
+  border: 1px solid white;
+
+  border-radius: 10px;
+}
+.game {
+  
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  /* column-gap: 20px; */
+  gap: 5px;
+  z-index: 100;
+  display: none;
+
+}
+
+.scene {
+  width: 15rem;
+  height:15rem;
+  perspective: 1000px;
+  margin: 0;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+
+  border-radius: 50%;
+  
+
+}
+
+.card__face {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+.card .back img {
+  height: 80%;
+}
+
+
+
+.front,
+.back {
+  background: white;
+}
+
+.back {
+  /* background: blue; */
+  transform: rotateY(180deg);
+}
+
+.card.is-flipped {
+  transform: rotateY(180deg);
+
+}
+
+
+.size {
+width: fit-content;
+height: fit-content;
+animation: move 22s infinite;
+position: absolute;
+top: 25%;
+z-index: 1;
+transform: scale(0.4);
+opacity: .5;
+}
+.player{
+background-color: #840931;
+border: 10px solid #000000;
+border-bottom: none;
+border-radius: 60px 80px 0 0;
+height: 200px;
+width: 140px;
+margin: auto;
+top: 50px;
+left: -15%;
+z-index: 1;
+animation: rotate 15s infinite;
+}
+.player:after{
+content: "";
+position: absolute;
+width: 92%;
+height: 85%;
+background-color: #EA1616;
+border-radius:58% 70% 28% 42% / 28% 56% 88% 89%;
+
+top: 2.5px;
+left: 6px;
+}
+.legs{
+height: 50px;
+width: 60px;
+background-color: #840931;
+position: absolute;
+left: -10px;
+bottom: -50px;
+border: 10px solid black;
+border-top: none;
+border-radius: 0 0 22px 22px;
+z-index: -1;
+}
+.legs:before{
+content: "";
+height: 37px;
+width: 40px;
+background-color: #840931;
+position: absolute;
+right: -90px;
+border: 10px solid black;
+border-top: none;
+border-radius: 0 0 22px 22px;
+}
+.legs:after{
+content: "";
+height: 10px;
+width: 55px;
+background-color: black;
+position: absolute;
+top: -10px;
+left: 40px;
+border-radius: 0 0 10px 0;
+}
+.player .back{
+height: 120px;
+width: 35px;
+background-color: #EA1616;
+border: 10px solid black;
+border-right: none;
+position: absolute;
+left: -45px;
+top: 65px;
+border-radius: 0 20px  20px 0;
+}
+.player .back:before{
+content: "";
+position: absolute;
+height: 78px;
+width: 26px;
+background-color: #840931;
+bottom: -0.5px;
+left: -1px;
+border-radius: 0 12px 8px 0;
+}
+.glass{
+height: 75px;
+width: 110px;
+background-color: #225381;
+position: absolute;
+top: 30px;
+left: 40px;
+border: 10px solid black;
+border-radius: 25px 50px 30px 30px ;
+z-index: 2;
+}
+.glass:before{
+content: "";
+position: absolute;
+width: 85%;
+height: 65%;
+background-color: #71D4EC;
+border-radius: 0 28px 3px 30px ;
+right: 0px;
+top: 0px;
+}
+.glass:after{
+content: "";
+position: absolute;
+width: 45%;
+height: 22%;
+background-color: #F7F7F7;
+left: 39px;
+top: 5px;
+border-radius: 25px;
+-webkit-transform: rotate(6deg);
+    -ms-transform: rotate(6deg);
+        transform: rotate(6deg);
+}
+
+@keyframes move {
+0% {
+    right: 100%;
+}
+50% {
+    right: -1%;
+}
+51% {
+    right: -0%;
+}
+100% {
+    right: 100%;
+}
+}
+
+@keyframes rotate {
+  0% {
+      transform: rotate(0deg);
+  }
+  15% {
+      transform: rotate(70deg);
+  }
+  30% {
+      transform: rotate(215deg);
+  }
+  45% {
+      transform: rotate(295deg);
+  }
+  60% {
+      transform: rotate(325deg);
+  }
+  75% {
+      transform: rotate(-420deg);
+  }
+  90% {
+      transform: rotate(-485deg);
+  }
+  100% {
+      transform: rotate(0deg);
+  }
+}
