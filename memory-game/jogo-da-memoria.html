@@ -24,8 +24,8 @@
         for (let i = 0; i < 18; i++) {
           document.write(`
         <div class="scene">
-        <div class="card">
-          <div class="card__face front"><img src="assets/" alt=""></div>
+        <div id="${i}"class="card ">
+          <div class="card__face front"></div>
           <div class="card__face back"><img src="" alt=""></div>
         </div>
       </div>
@@ -55,7 +55,8 @@
     document.querySelector('button + button').style.display = 'none'
     audioStart.load()
     audioStart.play()
-    this.innerText == 'Play Among' ? addRandomImage(cardsImage,'among','png'): addRandomImage(cardsImage,'infor3','jpg')
+    this.innerText == 'Play Among' ? addRandomImage(cardsImage, 'among', 'png') : addRandomImage(cardsImage, 'infor3',
+      'jpg')
 
   }
 
@@ -63,7 +64,7 @@
     return Math.floor(Math.random() * max)
   }
 
-  function addRandomImage(imageList,folder,typeImg) {
+  function addRandomImage(imageList, folder, typeImg) {
 
     let numbersRandomList = []
     let numbersRandomList2 = []
@@ -79,15 +80,15 @@
     }
 
     let indexNumbersRandomList;
-    for (let index = 0; index != 18; index++) {
+    for (let index in cardsImage) {
 
       if (numbersRandomList.length != 0) {
         indexNumbersRandomList = randomNumber(numbersRandomList.length)
         imageList[index].src = `assets/${folder}/${numbersRandomList[indexNumbersRandomList]}.${typeImg}`
-        console.log(`indexNumbersRandomList ${numbersRandomList[indexNumbersRandomList]}  `)
+        // console.log(`indexNumbersRandomList ${numbersRandomList[indexNumbersRandomList]}  `)
 
         numbersRandomList2.push(numbersRandomList[indexNumbersRandomList])
-        console.log(`numbersRandomList: ${numbersRandomList} numbersRandomList2: ${numbersRandomList2}  `)
+        // console.log(`numbersRandomList: ${numbersRandomList} numbersRandomList2: ${numbersRandomList2}  `)
         numbersRandomList.splice(indexNumbersRandomList, 1)
 
 
@@ -98,13 +99,24 @@
       }
 
     }
+  }
 
+  function matchCards() {
+    const cardsIsFlipped = document.querySelectorAll('.is-flipped')
+    if (cardsIsFlipped.length == 2) {
+      const [cardIsFlipped1, cardIsFlipped2] = cardsIsFlipped
+      const imgCard1 = cardIsFlipped1.children.item(1).children.item(0)
+      const imgCard2 = cardIsFlipped2.children.item(1).children.item(0)
 
+      return imgCard1.src == imgCard2.src ? [cardIsFlipped1.id, cardIsFlipped2.id] : []
+    }
+    return []
 
   }
 
   const buttonPlay1 = document.querySelector('header button').addEventListener('click', start)
   const buttonPlay2 = document.querySelector('header button + button').addEventListener('click', start)
+
   const cards = document.querySelectorAll('.card')
   const cardsImage = document.querySelectorAll('.card .back img')
 
@@ -112,18 +124,35 @@
   const audioClick = new Audio('./audio/fullsizerender_uX5JgzS.mp3')
   const audioVictory = new Audio('./audio/victory-crew.mp3')
 
+  let numberCardsIsFlipped = 0
+
 
 
   for (card of cards) {
-    card.addEventListener('click', function() {
-      this.classList.toggle('is-flipped')
-      audioClick.play()
-      setTimeout(()=>this.classList.toggle('is-flipped'),2000)
-      // 
+    card.addEventListener('click', function flipCard () {
+      if (numberCardsIsFlipped < 2) {
+        this.classList.toggle('is-flipped')
+        numberCardsIsFlipped++
+        if(numberCardsIsFlipped == 2){
+          const cardsMatchID = matchCards()
+          if(cardsMatchID.length == 2){
+            const card1 = document.getElementById(cardsMatchID[0])
+            const card2 = document.getElementById(cardsMatchID[1])
+            card1.classList.toggle('match')
+            card2.classList.toggle('match')
+            card1.removeEventListener('click', flipCard);
+            card2.removeEventListener('click', flipCard);
+          }
+        }
+        setTimeout(() => {
+          this.classList.toggle('is-flipped')
+          numberCardsIsFlipped--
+        }, 2000)
+
+
+      }
     })
   }
-
-  
 </script>
 
 </html>
