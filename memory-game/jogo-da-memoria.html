@@ -50,9 +50,7 @@
 
   function start() {
     document.querySelector('.game').style.display = 'grid'
-    document.querySelector('header').style.height = '15vh'
-    document.querySelector('button').style.display = 'none'
-    document.querySelector('button + button').style.display = 'none'
+    document.querySelector('header').style.display = 'none'
     audioStart.load()
     audioStart.play()
     this.innerText == 'Play Among' ? addRandomImage(cardsImage, 'among', 'png') : addRandomImage(cardsImage, 'infor3',
