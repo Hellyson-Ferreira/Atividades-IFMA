@@ -54,12 +54,11 @@ header button {
   gap: 5px;
   z-index: 100;
   display: none;
-
 }
 
 .scene {
-  width: 15rem;
-  height:15rem;
+  width: 12rem;
+  height:12rem;
   perspective: 1000px;
   margin: 0;
 }
@@ -92,9 +91,8 @@ header button {
 
 
 .card .back img {
-  height: 80%;
+  height: 95%;
 }
-
 
 
 .front,
@@ -111,8 +109,50 @@ header button {
   transform: rotateY(180deg);
 
 }
+.match{
+  transform: rotateY(180deg);
+  
+}
 
+@media(max-width: 1050px){
+  
+  .scene {
+    width: 9rem;
+    height:9rem;
+    
+  }
+}
 
+@media(max-width: 900px){
+  
+  .scene {
+    width: 7rem;
+    height:7rem;
+    
+  }
+}
+@media(max-width: 600px){
+  .game {
+  
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    /* column-gap: 20px; */
+    gap: 5px;
+    z-index: 100;
+    display: none;
+  }
+  .scene {
+    width: 6rem;
+    height:6rem;
+    
+  }
+  header h1{
+    font-size: 3rem;
+  }
+}
+
+/* ****************************************************************************** */
 .size {
 width: fit-content;
 height: fit-content;
