@@ -15,7 +15,7 @@ body {
 
 main {
   
-  height: 80vh;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -146,9 +146,6 @@ header button {
     width: 6rem;
     height:6rem;
     
-  }
-  header h1{
-    font-size: 3rem;
   }
 }
 
