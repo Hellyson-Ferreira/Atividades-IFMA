@@ -35,10 +35,15 @@
         }
       </script>
 
-    </div>
-  </main>
 
-  <div class="size">
+  </main>
+  </div>
+  <div class="victory">
+    <img src="./assets/victory.webp" alt="">
+    <button onClick="window.location.reload()">Jogar novamente</button>
+  </div>
+
+  <div class=" size">
     <div class="player">
       <div class="legs"></div>
       <div class="back"></div>
@@ -47,7 +52,6 @@
   </div>
 </body>
 <script>
-
   function start() {
     document.querySelector('.game').style.display = 'grid'
     document.querySelector('header').style.display = 'none'
@@ -56,6 +60,16 @@
     this.innerText == 'Play Among' ? addRandomImage(cardsImage, 'among', 'png') : addRandomImage(cardsImage, 'infor3',
       'jpg')
 
+  }
+
+  function victory() {
+    cardsMatch = document.querySelectorAll('.match')
+    if (cardsMatch.length == 18) {
+      audioVictory.play()
+      document.querySelector('main').style.filter = 'blur(4px)'
+      document.querySelector('.victory').style.display = 'flex'
+      
+    }
   }
 
   function randomNumber(max) {
@@ -127,28 +141,32 @@
 
 
   for (card of cards) {
-    card.addEventListener('click', function flipCard () {
+    card.addEventListener('click', function flipCard() {
       if (numberCardsIsFlipped < 2) {
         this.classList.toggle('is-flipped')
         numberCardsIsFlipped++
-        if(numberCardsIsFlipped == 2){
+        if (numberCardsIsFlipped == 2) {
           const cardsMatchID = matchCards()
-          if(cardsMatchID.length == 2){
+          if (cardsMatchID.length == 2) {
             const card1 = document.getElementById(cardsMatchID[0])
             const card2 = document.getElementById(cardsMatchID[1])
             card1.classList.toggle('match')
             card2.classList.toggle('match')
             card1.removeEventListener('click', flipCard);
             card2.removeEventListener('click', flipCard);
+
           }
+
         }
+
         setTimeout(() => {
           this.classList.toggle('is-flipped')
           numberCardsIsFlipped--
         }, 2000)
-
-
       }
+      victory()
+
+
     })
   }
 </script>
