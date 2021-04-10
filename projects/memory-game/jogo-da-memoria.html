@@ -52,53 +52,7 @@
   </div>
 </body>
 <script>
-  
-  const buttonPlay1 = document.querySelector('header button').addEventListener('click', start)
-  const buttonPlay2 = document.querySelector('header button + button').addEventListener('click', start)
-
-  const cards = document.querySelectorAll('.card')
-  const cardsImage = document.querySelectorAll('.card .back img')
-
-  const audioStart = new Audio('./audio/among-us-roundstart.mp3')
-  const audioVictory = new Audio('./audio/victory-crew.mp3')
-
-  let numberCardsIsFlipped = 0
-
-
-
-  for (card of cards) {
-    card.addEventListener('click', function flipCard() {
-      if (numberCardsIsFlipped < 2) {
-        this.classList.toggle('is-flipped')
-        numberCardsIsFlipped++
-        if (numberCardsIsFlipped == 2) {
-          const cardsMatchID = matchCards()
-          if (cardsMatchID.length == 2) {
-            const card1 = document.getElementById(cardsMatchID[0])
-            const card2 = document.getElementById(cardsMatchID[1])
-            card1.classList.toggle('match')
-            card2.classList.toggle('match')
-            card1.removeEventListener('click', flipCard);
-            card2.removeEventListener('click', flipCard);
-
-          }
-
-        }
-
-        setTimeout(() => {
-          this.classList.toggle('is-flipped')
-          numberCardsIsFlipped--
-        }, 2000)
-      }
-      victory()
-
-
-    })
-  }
-
-
-
-  function start() {
+    function start() {
     document.querySelector('.game').style.display = 'grid'
     document.querySelector('header').style.display = 'none'
     audioStart.load()
@@ -171,6 +125,55 @@
     return []
 
   }
+  
+  
+  const buttonPlay1 = document.querySelector('header button').addEventListener('click', start)
+  const buttonPlay2 = document.querySelector('header button + button').addEventListener('click', start)
+
+  const cards = document.querySelectorAll('.card')
+  const cardsImage = document.querySelectorAll('.card .back img')
+
+  const audioStart = new Audio('./audio/among-us-roundstart.mp3')
+  const audioVictory = new Audio('./audio/victory-crew.mp3')
+
+  let numberCardsIsFlipped = 0
+
+
+
+  for (card of cards) {
+    card.addEventListener('click', function flipCard() {
+      if (numberCardsIsFlipped < 2) {
+        this.classList.toggle('is-flipped')
+        numberCardsIsFlipped++
+        if (numberCardsIsFlipped == 2) {
+          const cardsMatchID = matchCards()
+          if (cardsMatchID.length == 2) {
+            const card1 = document.getElementById(cardsMatchID[0])
+            const card2 = document.getElementById(cardsMatchID[1])
+            card1.classList.toggle('match')
+            card2.classList.toggle('match')
+            card1.removeEventListener('click', flipCard);
+            card2.removeEventListener('click', flipCard);
+
+          }
+
+        }
+
+        setTimeout(() => {
+          this.classList.toggle('is-flipped')
+          numberCardsIsFlipped--
+        }, 2000)
+      }
+      victory()
+
+
+    })
+  }
+
+
+
+
+
 
 </script>
 

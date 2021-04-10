@@ -1,18 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atividades Programação 2</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        main {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        main .projects {
+            display: grid;
+            grid-template-rows: 1fr 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+
+        main .projects div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 9rem;
+            height:9rem;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            margin: 10px;
+            
+        }
+    </style>
 </head>
+
 <body>
 
-    <h1>Atividades</h1>
 
-    <a href="./calculadora.html">Calculadora</a> <br>  
-    <a href="./prime-video-bootstrap.html">Prime Video Bootstrap</a><br>
-    <a href="./validando-dados.html">Validação de formulário</a> <br>
-    <a href="memory-game/jogo-da-memoria.html">Jogo da memoria</a><br>
+
+    <main>
+        <div class="projects">
+            <a href="./projects/calculadora.html" _blank>
+                <div>Calculadora</div>
+            </a>
+
+            <a href="./projects/prime-video-bootstrap.html">
+                <div>Prime Video Bootstrap</div>
+            </a>
+
+            <a href="./projects/validando-dados.html">
+                <div>Validação de formulário</div>
+            </a>
+
+            <a href="./projects/memory-game/jogo-da-memoria.html">
+                <div>Jogo da memoria</div>
+            </a>
+        </div>
+
+    </main>
+
+
+
 </body>
+
 </html>
